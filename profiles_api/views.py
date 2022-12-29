@@ -11,6 +11,7 @@ class HelloApiView(APIView):
 
     def get(self, request, format=None):
         """Returns a list of APIView features"""
+        serializer_class = serializers.HelloSerializer
 
         an_apiview = [
             'Uses HTTP methods as functions (get, post, patch, put, delete)',
@@ -23,7 +24,7 @@ class HelloApiView(APIView):
 
     def post(self, request):
         """Create a hello message with our name"""
-        serializer = self.serializer_class(data=request.data)
+        serializer = self.serializer_class(date=request.data)
 
         if serializer.is_valid():
             name = serializer.validated_data.get('name')
